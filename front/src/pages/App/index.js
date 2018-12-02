@@ -28,10 +28,9 @@ class App extends React.Component {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       
-    
-
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route path="/todo" component={AuthPage} />
         <Route path="/todo" component={TodoPage} />
       </Switch>
 
