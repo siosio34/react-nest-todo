@@ -16,6 +16,10 @@ export class AuthService {
     // signin 하면 토큰줌
     return this.jwtService.sign(user);
   }
+  
+  async signUp(): Promise<string> {
+    
+  }
 
   async validateUser(payload: JwtPayload): Promise<any> {
     return await this.usersService.findOneByEmail(payload.email);

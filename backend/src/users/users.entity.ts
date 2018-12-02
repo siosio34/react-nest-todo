@@ -6,7 +6,7 @@ export class Users {
     @PrimaryGeneratedColumn()
     id: number;
     
-    @Column
+    @Column({ unique: true })
     email: string;
     
     @Column({ length: 20 })
@@ -16,6 +16,6 @@ export class Users {
     password: string;
     
     @Column()
-    passwordSalt: string;
+    passwordHash: string;
     
 }
