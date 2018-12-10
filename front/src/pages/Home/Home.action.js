@@ -1,12 +1,15 @@
-// import { makeAsyncActionTypes, makeActionCreator, makeAsyncActionCreator } from 'Utils/actionHelpers';
+import { makeAsyncActionTypes, makeActionCreator, makeAsyncActionCreator } from 'Utils/actionHelper';
 
-// export default HomeActionTypes = {
-//     GET_HOME: makeAsyncActionTypes('GET'),
-//     POST_HOME: 
-    
-// }
+export default HomeActionTypes = {
+    GET_HOME: makeAsyncActionTypes('GET_HOME'),
+    POST_HOME: makeAsyncActionTypes('POST_HOME'),
+    UPDATE_HOME: makeAsyncActionTypes('UPDATE_HOME'),
+    DELETE_HOME: makeAsyncActionTypes('DELETE_HOME'),
+}
 
-// export default HomeActionCreators = {
-//     get: makeAsyncActionCreator(HomeActionTypes.GET),
-    
-// }
+export default HomeActionCreators = {
+    getHome: makeAsyncActionCreator(HomeActionTypes.GET_HOME),
+    postHome: makeAsyncActionCreator(HomeActionTypes.POST_HOME),
+    updateHome: makeAsyncActionCreator(HomeActionTypes.UPDATE_HOME),
+    deleteHome:  makeAsyncActionCreator(HomeActionTypes.DELETE_HOME),
+}
