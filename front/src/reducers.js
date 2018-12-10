@@ -5,24 +5,20 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-import globalReducer from './pages/App/app.reducer';
+import history from './utils/history';
+
+// import globalReducer from './pages/App/app.reducer';
 
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
-export default function createReducer(injectedReducers = {}, history) {
+export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-    router: connectRouter(history),
-    globalReducer,
     ...injectedReducers,
   });
 
   // // Wrap the root reducer and return a new root reducer with router state
-  // const mergeWithRouterState = connectRouter(history);
-  // console.log('mergeWithRouterState', mergeWithRouterState);
-  // console.log('addada',history );
-  // console.log('mergeWithRouterState(rootReducer)', mergeWithRouterState(rootReducer));
-  
-  return rootReducer;
+  const mergeWithRouterState = connectRouter(history);
+  return mergeWithRouterState(rootReducer);
 }

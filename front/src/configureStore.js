@@ -29,7 +29,7 @@ export default function configureStore(initialState = {}, history) {
   /* eslint-enable */
 
   const store = createStore(
-    createReducer(initialState, history),
+    createReducer(initialState),
     initialState,
     composeEnhancers(...enhancers),
   );
