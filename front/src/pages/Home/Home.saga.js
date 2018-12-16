@@ -5,7 +5,6 @@ import { HomeActionTypes, HomeActionCreators } from './Home.action';
 import request from 'Utils/request';
 
 export function* getHome() {
-    console.log('으에에에에에');
     yield put(HomeActionCreators.getHome.request());
     
 }

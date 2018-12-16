@@ -15,14 +15,13 @@ import { HomeActionCreators } from './Home.action';
 class HomePage extends React.Component {
   
     componentDidMount() {
-
-        this.props.getHome();
+      // 유저가 없으면 로그인 유저가 있으면 todo
+      this.props.getHome();
     }
     
     render() {
         const { loading, error, repos } = this.props;
 
-        console.log('loading', loading);
         return (
             <div>HomePage 페이지</div>
             )
