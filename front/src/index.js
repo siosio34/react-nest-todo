@@ -9,6 +9,8 @@ import App from './pages/App';
 
 import configureStore from './configureStore';
 
+import './global-style.css'
+
 const history = createBrowserHistory();
 
 // Create redux store with history

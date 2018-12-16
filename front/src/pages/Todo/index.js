@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+
 import injectReducer from 'Utils/injectReducer';
 import injectSaga from 'Utils/injectSaga';
 
@@ -12,19 +13,39 @@ import reducer from './Todo.reducer';
 import saga from './Todo.saga';
 import { makeSelectTodoItems, makeSelectTodoLoading, makeSelectTodoError } from './Todo.selector'; 
 import { TodoActionCreators } from './Todo.action';
+import TodoList from './TodoList';
+
+const todos = [
+    
+    {
+        title: 'TEST',
+        description: 'TEST내용'
+    },
+    {
+        title: 'TEST',
+        description: 'TEST내용'
+    },
+    {
+        title: 'TEST',
+        description: 'TEST내용'
+    },
+];
+
 
 class TodoPage extends React.Component {
     componentDidMount() {
     //   // 유저가 없으면 로그인 유저가 있으면 todo
     //   this.props.getHome();
+    
+        
     }
     
     render() {
-        const { loading, error, repos } = this.props;
-        console.log('loadingloading', loading);
+        const { loading, error, items } = this.props;
+        console.log('todos', todos);
 
         return (
-            <div>Todo 페이지</div>
+            <TodoList todos={todos} />
             )
     }
 }
