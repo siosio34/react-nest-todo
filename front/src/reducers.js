@@ -7,7 +7,7 @@ import { connectRouter } from 'connected-react-router';
 
 import history from './utils/history';
 
-import globalReducer from './pages/App/app.reducer';
+import globalReducer from './pages/App/App.reducer';
 
 
 /**

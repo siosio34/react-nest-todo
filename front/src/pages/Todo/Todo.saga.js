@@ -28,8 +28,8 @@ export function* postTodo(action) {
     
 }
 
-export function* editTodo(action) {
-    yield put(TodoActionCreators.editTodo.request());
+export function* updateTodo(action) {
+    yield put(TodoActionCreators.updateTodo.request());
     
     try {
         
@@ -49,11 +49,12 @@ export function* deleteTodo(action) {
 }
 
 export default function *rootSaga() {
+    
+    console.log('TodoActionTypes', TodoActionTypes)
     yield [
         takeLatest(TodoActionTypes.GET_TODO.INDEX, getTodo),
         takeLatest(TodoActionTypes.POST_TODO.INDEX, postTodo),
-        takeLatest(TodoActionTypes.EDIT_TODO.INDEX, editTodo),
+        takeLatest(TodoActionTypes.UPDATE_TODO.INDEX, updateTodo),
         takeLatest(TodoActionTypes.DELETE_TODO.INDEX, deleteTodo),
-        
         ]
 }

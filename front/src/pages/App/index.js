@@ -21,16 +21,10 @@ class App extends React.Component {
     render() {
       console.log(this.context);
         return (
-            <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      
+          <AppWrapper>
+
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={TodoPage} />
         <Route path="/todo" component={AuthPage} />
         <Route path="/todo" component={TodoPage} />
       </Switch>
