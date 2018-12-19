@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Query, Param, Body } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { TodosRO, TodoRO } from './todo.interface';
-import { CreateTodoDto, UpdateTodoDto } from './dto';
+import { CreateTodoDto } from './dto';
 
 // import {
 //   ApiUseTags,
@@ -22,7 +22,7 @@ export class TodoController {
   @Get(':id')
   async findOne(@Param() params): Promise<TodoRO> {
       const { id } = params;
-      return await this.todoService.findOne(id);
+      return await this.todoService.findOne({ id });
   }
   
   @Post()
@@ -31,7 +31,7 @@ export class TodoController {
   }
   
   @Put(':id')
-  async update(@Param() params, @Body('todo') todoData: UpdateTodoDto) {
+  async update(@Param() params, @Body('todo') todoData: CreateTodoDto) {
       return this.todoService.update(params.id, todoData);
   }
   
