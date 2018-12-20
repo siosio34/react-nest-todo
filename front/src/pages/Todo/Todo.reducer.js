@@ -9,6 +9,7 @@ export const initialState = {
 export default function todoReducer(state = initialState, action = {payload: {
     items: []
 }}) {
+
     switch (action.type) {
     case TodoActionTypes.GET_TODO.INDEX:
     case TodoActionTypes.POST_TODO.INDEX:
@@ -27,9 +28,10 @@ export default function todoReducer(state = initialState, action = {payload: {
     case TodoActionTypes.POST_TODO.SUCCESS:
     case TodoActionTypes.UPDATE_TODO.SUCCESS:
     case TodoActionTypes.DELETE_TODO.SUCCESS:
+        console.log('action', action);
         return {
             ...state,
-            items: action.payload || [],
+            items: action || [],
             loading: false,
             error: false
         }
@@ -37,6 +39,7 @@ export default function todoReducer(state = initialState, action = {payload: {
     case TodoActionTypes.POST_TODO.FAILURE:
     case TodoActionTypes.UPDATE_TODO.FAILURE:
     case TodoActionTypes.DELETE_TODO.FAILURE:
+        console.log('action', action);
         return {
             ...state,
             loading: false,

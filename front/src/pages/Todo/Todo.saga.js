@@ -6,30 +6,28 @@ import { getTodoApi, postTodoApi, updateTodoApi, deleteTodoApi } from './Todo.ap
 
 
 export function* getTodo(action) {
-    console.log('getget');
     try {
         yield put(TodoActionCreators.getTodo.request());
-        const response = call(getTodoApi, action.payload.query);
+        const response = yield call(getTodoApi);
         yield put(TodoActionCreators.getTodo.success({ response }));
     } catch (error) {
-        yield put(TodoActionCreators.getTodo.success({ error }));
+        console.log('error', error);
+        yield put(TodoActionCreators.getTodo.failure({ error }));
     }
     
 }
 
 export function* postTodo(action) {
-    
-    console.log('aaaaaaaa' , action);
     try {
-        console.log('action.payload', action.payload);
         const { title, description } = action.payload;
-        console.log('action.payload', action.payload);
         yield put(TodoActionCreators.postTodo.request());
-        const response = call(postTodoApi, {title, description});
+        console.log('title', title);
+        const response = yield call(postTodoApi, {title, description});
+        console.log('response', response);
         yield put(TodoActionCreators.postTodo.success({ response }))
     } catch (error) {
-
-        yield put(TodoActionCreators.getTodo.success({ error }));
+        console.log('error', error);
+        yield put(TodoActionCreators.postTodo.failure({ error }));
     }
     
 }

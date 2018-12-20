@@ -4,9 +4,9 @@ export const getTodoApi = query => {
     return axiosInstance.get('/todo', {...query});
 }
 
-export const postTodoApi = createTodoData => {
+export const postTodoApi = ( createTodoData ) => {
     console.log('createTodoData', createTodoData);
-    return axiosInstance.post('/todo', { createTodoData });
+    return axiosInstance.post('/todo',  { ...createTodoData });
 }
 
 export const updateTodoApi = (id, updateTodoData) => {
