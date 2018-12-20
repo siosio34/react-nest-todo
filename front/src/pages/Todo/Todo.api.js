@@ -1,17 +1,18 @@
 import axiosInstance from 'Utils/request';
 
-export const getTodoApi(query) {
+export const getTodoApi = query => {
     return axiosInstance.get('/todo', {...query});
 }
 
-export const postTodoApi(createTodoData) {
+export const postTodoApi = createTodoData => {
+    console.log('createTodoData', createTodoData);
     return axiosInstance.post('/todo', { createTodoData });
 }
 
-export const updateTodoApi(id, updateTodoData) {
+export const updateTodoApi = (id, updateTodoData) => {
     return axiosInstance.put('/todo/${id}', { updateTodoData });
 }
 
-export const deleteTodoApi(id) {
+export const deleteTodoApi = id => {
     return axiosInstance.delete(`/todo/${id}`);
 }

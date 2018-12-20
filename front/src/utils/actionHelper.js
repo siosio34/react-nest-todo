@@ -10,14 +10,14 @@ export function makeAsyncActionTypes(base) {
 	}, {});
 }
 
-export function makeActionCreator(type, payload = {}) {
-  return {type, ...payload};
+export function makeActionCreator(actionType) {
+  return payload => ({ type: actionType, payload })
 }
 
 export function makeAsyncActionCreator(action) {
-	let actionCreator = () => makeActionCreator(action.INDEX);
-	actionCreator.request = () => makeActionCreator(action.REQUEST);
-	actionCreator.success = () => makeActionCreator(action.SUCCESS);
-	actionCreator.failure = () => makeActionCreator(action.FAILURE);
+	let actionCreator =  makeActionCreator(action.INDEX);
+	actionCreator.request =  makeActionCreator(action.REQUEST);
+	actionCreator.success = makeActionCreator(action.SUCCESS);
+	actionCreator.failure = makeActionCreator(action.FAILURE);
 	return actionCreator;
 }

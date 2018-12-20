@@ -37,15 +37,17 @@ class TodoPage extends React.Component {
     //   // 유저가 없으면 로그인 유저가 있으면 todo
     //   this.props.getHome();
     
-        
+    this.props.postTodo({ payload: { title: '우왕', description: 'ㅋㅋㅋ'}});
+    this.props.getTodo();
+    
     }
     
     render() {
         const { loading, error, items } = this.props;
-        console.log('todos', todos);
-
+        console.log('todos', items);
+      
         return (
-            <TodoList todos={todos} />
+            <TodoList todos={items} />
             )
     }
 }
@@ -56,8 +58,8 @@ export function mapDispatchToProps(dispatch) {
     getTodo: () => {
     dispatch(TodoActionCreators.getTodo())
     },
-    postTodo: (data) => {
-    dispatch(TodoActionCreators.postTodo(data))
+    postTodo: ( data ) => {
+    dispatch(TodoActionCreators.postTodo( data ))
     },
     updateTodo: (id) => {
     dispatch(TodoActionCreators.updateTodo(id))
@@ -79,6 +81,8 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectTodoLoading(),
   error: makeSelectTodoError(),
 });
+
+
 
 const withConnect = connect(
   mapStateToProps,

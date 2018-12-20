@@ -11,7 +11,7 @@ export const TodoActionCreators = {
     getTodo: makeAsyncActionCreator(TodoActionTypes.GET_TODO),
     postTodo: makeAsyncActionCreator(TodoActionTypes.POST_TODO),
     updateTodo: makeAsyncActionCreator(TodoActionTypes.UPDATE_TODO),
-    deleteTodo:  makeAsyncActionCreator(TodoActionTypes.DELETE_TODO),
+    deleteTodo: makeAsyncActionCreator(TodoActionTypes.DELETE_TODO),
 }
 
 export default {
