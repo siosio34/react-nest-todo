@@ -37,6 +37,7 @@ export class TodoService {
     }
     
     async create(todoData: CreateTodoDto): Promise<TodoEntity> {
+        console.log('zzz', todoData);
         let todo = new TodoEntity();
         todo.title = todoData.title;
         todo.description = todoData.description;
@@ -57,8 +58,5 @@ export class TodoService {
     async delete(id: number): Promise<DeleteResult> {
         return await this.todoRepository.delete({id: id});
     }
-    
-    
-    
     
 }

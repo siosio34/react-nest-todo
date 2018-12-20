@@ -26,12 +26,14 @@ export class TodoController {
   }
   
   @Post()
-  async create(@Body('todo') todoData: CreateTodoDto) {
+  async create(@Body() todoData: CreateTodoDto) {
+    console.log('todo', todoData);
       return this.todoService.create(todoData);
   }
   
   @Put(':id')
   async update(@Param() params, @Body('todo') todoData: CreateTodoDto) {
+    
       return this.todoService.update(params.id, todoData);
   }
   
