@@ -15,8 +15,8 @@ export function makeActionCreator(actionType) {
 }
 
 export function makeAsyncActionCreator(action) {
-	let actionCreator =  makeActionCreator(action.INDEX);
-	actionCreator.request =  makeActionCreator(action.REQUEST);
+	let actionCreator = makeActionCreator(action.INDEX);
+	actionCreator.request = makeActionCreator(action.REQUEST);
 	actionCreator.success = makeActionCreator(action.SUCCESS);
 	actionCreator.failure = makeActionCreator(action.FAILURE);
 	return actionCreator;
