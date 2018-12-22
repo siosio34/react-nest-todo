@@ -15,39 +15,28 @@ import { makeSelectTodoItems, makeSelectTodoLoading, makeSelectTodoError } from 
 import { TodoActionCreators } from './Todo.action';
 import TodoList from './TodoList';
 
-const todos = [
-    
-    {
-        title: 'TEST',
-        description: 'TEST내용'
-    },
-    {
-        title: 'TEST',
-        description: 'TEST내용'
-    },
-    {
-        title: 'TEST',
-        description: 'TEST내용'
-    },
-];
-
-
 class TodoPage extends React.Component {
     componentDidMount() {
-    //   // 유저가 없으면 로그인 유저가 있으면 todo
-    //   this.props.getHome();
-    
-    this.props.postTodo({ title: '우왕', description: 'ㅋㅋㅋ'});
+      
+    // this.props.postTodo({ title: '한글', description: '이에영!'});
     this.props.getTodo();
     
     }
     
+    editTodo = (id) => {
+      
+    }
+    
+    deleteTodo = id => e => {
+
+      this.props.deleteTodo({ id });
+    }
+    
     render() {
         const { loading, error, items } = this.props;
-        console.log('todos', this.props);
       
         return (
-            <TodoList todos={items} />
+            <TodoList todos={items} editTodo={this.editTodo} deleteTodo={this.deleteTodo} />
             )
     }
 }
@@ -76,14 +65,6 @@ const mapStateToProps = state => ({
     loading: state.todo.loading,
     error: state.todo.error
 })
-
-// const mapStateToProps = createStructuredSelector({
-//   items: makeSelectTodoItems(),
-//   loading: makeSelectTodoLoading(),
-//   error: makeSelectTodoError(),
-// });
-
-
 
 const withConnect = connect(
   mapStateToProps,

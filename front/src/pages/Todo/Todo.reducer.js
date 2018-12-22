@@ -25,8 +25,6 @@ export default function todoReducer(state = initialState, action = {payload: {
             loading: true
         }
     case TodoActionTypes.GET_TODO.SUCCESS:
-        console.log('action', action);
-        console.log('action.payload', action.payload.response.todos)
         return {
             ...state,
             items: action.payload.response.todos || [],

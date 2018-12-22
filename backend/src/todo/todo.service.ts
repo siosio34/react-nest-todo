@@ -37,11 +37,13 @@ export class TodoService {
     }
     
     async create(todoData: CreateTodoDto): Promise<TodoEntity> {
-        console.log('zzz', todoData);
+
         let todo = new TodoEntity();
         todo.title = todoData.title;
         todo.description = todoData.description;
         todo.isFinished = false;
+        
+        console.log('todo', todo);
         
         const newTodo = await this.todoRepository.save(todo);
         
