@@ -5,6 +5,7 @@ export const TodoActionTypes = {
     POST_TODO: makeAsyncActionTypes('POST_TODO'),
     UPDATE_TODO: makeAsyncActionTypes('UPDATE_TODO'),
     DELETE_TODO: makeAsyncActionTypes('DELETE_TODO'),
+    CHANGE_TODO_TITLE: 'CHANGE_TODO_TITLE',
 }
 
 export const TodoActionCreators = {
@@ -12,6 +13,7 @@ export const TodoActionCreators = {
     postTodo: makeAsyncActionCreator(TodoActionTypes.POST_TODO),
     updateTodo: makeAsyncActionCreator(TodoActionTypes.UPDATE_TODO),
     deleteTodo: makeAsyncActionCreator(TodoActionTypes.DELETE_TODO),
+    changeTodoTitle: makeActionCreator(TodoActionTypes.CHANGE_TODO_TITLE),
 }
 
 export default {

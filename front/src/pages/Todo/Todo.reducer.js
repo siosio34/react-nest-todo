@@ -3,14 +3,25 @@ import { TodoActionTypes } from './Todo.action'
 export const initialState = {
     loading: false,
     error: false,
-    items: []
+    items: [],
+    createTodo: {
+        title: '',
+        description: '우왕',
+    },
 }
 
-export default function todoReducer(state = initialState, action = {payload: {
-    items: []
-}}) {
+export default function todoReducer(state = initialState, action) {
 
     switch (action.type) {
+    case TodoActionTypes.CHANGE_TODO_TITLE:
+        console.log('action', action);
+        return {
+            ...state,
+            createTodo: {
+                ...state.createTodo,
+                title: action.payload,
+            }
+        }
     case TodoActionTypes.GET_TODO.INDEX:
     case TodoActionTypes.POST_TODO.INDEX:
     case TodoActionTypes.UPDATE_TODO.INDEX:
@@ -39,7 +50,6 @@ export default function todoReducer(state = initialState, action = {payload: {
     case TodoActionTypes.POST_TODO.FAILURE:
     case TodoActionTypes.UPDATE_TODO.FAILURE:
     case TodoActionTypes.DELETE_TODO.FAILURE:
-        console.log('action', action);
         return {
             ...state,
             loading: false,

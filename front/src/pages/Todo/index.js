@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-
 import injectReducer from 'Utils/injectReducer';
 import injectSaga from 'Utils/injectSaga';
 
@@ -13,37 +12,43 @@ import reducer from './Todo.reducer';
 import saga from './Todo.saga';
 import { makeSelectTodoItems, makeSelectTodoLoading, makeSelectTodoError } from './Todo.selector'; 
 import { TodoActionCreators } from './Todo.action';
+
+import AddTodoInput from './AddTodoInput';
 import TodoList from './TodoList';
 
 class TodoPage extends React.Component {
     componentDidMount() {
-      
-    // this.props.postTodo({ title: '한글', description: '이에영!'});
-    this.props.getTodo();
-    
+      this.props.getTodo();
     }
     
-    editTodo = (id) => {
-      
+    postTodo = () => {
+      const { createTodo } = this.props;
+      this.props.postTodo( createTodo );
+    }
+    
+    editTodo = (id, data) => {
+      this.props.updateTodo({ data });
     }
     
     deleteTodo = id => e => {
-
       this.props.deleteTodo({ id });
     }
     
     render() {
-        const { loading, error, items } = this.props;
+        const { loading, error, items, onChangeTodoTitle } = this.props;
       
         return (
+          <React.Fragment>
+            <AddTodoInput onChange={onChangeTodoTitle} postTodo={this.postTodo} />
             <TodoList todos={items} editTodo={this.editTodo} deleteTodo={this.deleteTodo} />
+          </React.Fragment>
             )
     }
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-      
+    onChangeTodoTitle: evt => dispatch(TodoActionCreators.changeTodoTitle(evt.target.value)),
     getTodo: () => {
     dispatch(TodoActionCreators.getTodo())
     },
@@ -63,7 +68,8 @@ export function mapDispatchToProps(dispatch) {
 const mapStateToProps = state => ({
     items: state.todo.items,
     loading: state.todo.loading,
-    error: state.todo.error
+    error: state.todo.error,
+    createTodo: state.todo.createTodo,
 })
 
 const withConnect = connect(

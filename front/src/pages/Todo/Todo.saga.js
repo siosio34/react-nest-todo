@@ -5,13 +5,13 @@ import { TodoActionTypes, TodoActionCreators } from './Todo.action';
 import { getTodoApi, postTodoApi, updateTodoApi, deleteTodoApi } from './Todo.api';
 
 
+
 export function* getTodo(action) {
     try {
         yield put(TodoActionCreators.getTodo.request());
         const response = yield call(getTodoApi);
         yield put(TodoActionCreators.getTodo.success({ response }));
     } catch (error) {
-        console.log('error', error);
         yield put(TodoActionCreators.getTodo.failure({ error }));
     }
     
@@ -23,6 +23,7 @@ export function* postTodo(action) {
         yield put(TodoActionCreators.postTodo.request());
         const response = yield call(postTodoApi, {title, description});
         yield put(TodoActionCreators.postTodo.success({ response }))
+        yield put(TodoActionCreators.getTodo());
     } catch (error) {
         yield put(TodoActionCreators.postTodo.failure({ error }));
     }
@@ -43,14 +44,12 @@ export function* updateTodo(action) {
 
 export function* deleteTodo(action) {
     
-    console.log('action', action);
-    
     try {
         const { id } = action.payload;
-        console.log('id', id);
         yield put(TodoActionCreators.deleteTodo.request());
         const response = yield call(deleteTodoApi, id);
-        yield put(TodoActionCreators.deleteTodo.success({ response }))
+        yield put(TodoActionCreators.deleteTodo.success({ response }));
+        yield put(TodoActionCreators.getTodo());
     } catch (error) {
         yield put(TodoActionCreators.getTodo.success({ error }));
     }
