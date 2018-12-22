@@ -25,16 +25,18 @@ export default function todoReducer(state = initialState, action = {payload: {
             loading: true
         }
     case TodoActionTypes.GET_TODO.SUCCESS:
-    case TodoActionTypes.POST_TODO.SUCCESS:
-    case TodoActionTypes.UPDATE_TODO.SUCCESS:
-    case TodoActionTypes.DELETE_TODO.SUCCESS:
         console.log('action', action);
+        console.log('action.payload', action.payload.response.todos)
         return {
             ...state,
-            items: action || [],
+            items: action.payload.response.todos || [],
             loading: false,
             error: false
         }
+    case TodoActionTypes.POST_TODO.SUCCESS:
+    case TodoActionTypes.UPDATE_TODO.SUCCESS:
+    case TodoActionTypes.DELETE_TODO.SUCCESS:
+
     case TodoActionTypes.GET_TODO.FAILURE:
     case TodoActionTypes.POST_TODO.FAILURE:
     case TodoActionTypes.UPDATE_TODO.FAILURE:

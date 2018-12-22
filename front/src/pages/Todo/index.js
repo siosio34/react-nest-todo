@@ -44,7 +44,7 @@ class TodoPage extends React.Component {
     
     render() {
         const { loading, error, items } = this.props;
-        console.log('todos', items);
+        console.log('todos', this.props);
       
         return (
             <TodoList todos={items} />
@@ -71,16 +71,17 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-// const mapStateToProps = state => ({
-//     loading: state.todo.loading,
-//     error: state.todo.error
-// })
+const mapStateToProps = state => ({
+    items: state.todo.items,
+    loading: state.todo.loading,
+    error: state.todo.error
+})
 
-const mapStateToProps = createStructuredSelector({
-  items: makeSelectTodoItems(),
-  loading: makeSelectTodoLoading(),
-  error: makeSelectTodoError(),
-});
+// const mapStateToProps = createStructuredSelector({
+//   items: makeSelectTodoItems(),
+//   loading: makeSelectTodoLoading(),
+//   error: makeSelectTodoError(),
+// });
 
 
 
